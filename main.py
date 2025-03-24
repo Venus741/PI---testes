@@ -1,22 +1,23 @@
 # TELA DE LOGIN
 acesso = False
+tentativas = 0
 
 while acesso == False:
 
-    tentativas = 0
     usuario = input("Usuário: ")
     senha = int(input("Senha: "))
 
     if usuario != "admin" and senha != 123:
-        
+
         tentativas += 1
-        tentativas_restantes = 3 - tentativas
+        resto = 3 - tentativas
+        print("Usuário ou senha incorretos.")
 
-        print(f"Usuário ou senha incorretos. Restam {tentativas_restantes} tentativas")
-
-        if tentativas > 3:
+        if tentativas > 2:
             print("Você excedeu o número de tentatívas. Por favor, tente mais tarde")
             break
+
+        print(f"Restam {resto} tentatívas")
 
     else:
         print("Acesso liberado.")
