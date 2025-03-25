@@ -1,25 +1,17 @@
-# TELA DE LOGIN
-acesso = False
+# ADAPTAÇÃO PARA TESTE
 
-while acesso == False:
+def verificar_login(usuario: str, senha: int) -> bool:
+    return usuario == "admin" and senha == 123
 
-    tentativas = 0
-    usuario = input("Usuário: ")
-    senha = int(input("Senha: "))
-
-    if usuario != "admin" and senha != 123:
-        
-        tentativas += 1
-        tentativas_restantes = 3 - tentativas
-
-        print(f"Usuário ou senha incorretos. Restam {tentativas_restantes} tentativas")
-
-        if tentativas > 3:
-            print("Você excedeu o número de tentatívas. Por favor, tente mais tarde")
-            break
-
+def tentar_login(tentativas: list, usuario: str, senha: int) -> str:
+    if verificar_login(usuario, senha):
+        return "Acesso liberado"
+    
     else:
-        print("Acesso liberado.")
-        acesso = True
-
-print("Seja bem-vindo!")
+        tentativas[0] += 1
+        if tentativas[0] > 2:
+            return "Você excedeu o número de tentativas"
+        
+        else:
+            resto = 3 - tentativas[0]
+            return f"Usuário ou senha incorretos. Restam {resto} tentativas"
